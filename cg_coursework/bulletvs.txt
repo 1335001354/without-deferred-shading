@@ -1,0 +1,24 @@
+struct VS_INPUT
+{
+	float4 Pos : POS;
+	float Size : SIZE;
+	float4 Color : COLOR;
+}
+
+struct PS_INPUT
+{
+	float4 Position : POS;
+	float4 Color : COLOR;
+	float2 texCoord : TEXCOORD;
+}
+
+PS_INPUT VS(VS_Input input){
+	PS_INPUT output;
+
+	//Pass position and color to the pixel shader
+	output.Position = float4(input.position, 1.0);
+	output.Color = input.Color;
+
+	//Set dummy texture coordinates(Option)
+}
+

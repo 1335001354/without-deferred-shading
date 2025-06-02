@@ -1,0 +1,28 @@
+// Input buffer containing vertex positions
+StructuredBuffer<float3> vertexBuffer : register(t0);
+
+// Output buffer for storing AABB (min and max)
+RWStructuredBuffer<float3> aabbBuffer : register(u0);
+
+[numthreads(1, 1, 1)] // One thread group per object
+void main(uint3 dispatchThreadID : SV_DispatchThreadID)
+{
+	uint objIndex = dispatchThreadID.x; // Object ID
+    uint startVertex = objIndex * NUM_VERTICES_PER_OBJECT; // Start index of the object's vertices
+    uint endVertex = startVertex + NUM_VERTICES_PER_OBJECT; // End index
+
+    float3 minBound = float3(FLT_MAX, FLT_MAX, FLT_MAX);
+    float3 maxBound = float3(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+
+    // Compute min and max bounds
+    for (uint i = startVertex; i < endVertex; i++)
+    {
+        float3 vertex = vertexBuffer[i];
+        minBound = min(minBound, vertex);
+        maxBound = max(maxBound, vertex);
+    }
+
+    // Write the results to the output buffer
+    aabbBuffer[objIndex * 2 + 0] = minBound; // Store min
+    aabbBuffer[objIndex * 2 + 1] = maxBound; // Store max
+}

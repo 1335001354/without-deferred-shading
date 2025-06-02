@@ -1,0 +1,10 @@
+# Type, ModelPath, 
+# PositionX, PositionY, PositionZ, Scale, RotationX, RotationY, RotationZ
+/Tree Resources/Pine/pine.gem 5
+10.0 0.0 -20.0 0.01 0.0 0.0 0.0
+10.0 0.0 -10.0 0.01 0.0 0.0 0.0
+10.0 0.0 0.0 0.01 0.0 0.0 0.0
+10.0 0.0 10.0 0.01 0.0 0.0 0.0
+10.0 0.0 20.0 0.01 0.0 0.0 0.0
+/Animal Resources/TRex/TRex.gem 1
+15.5 0.0 25.0 1 0.0 0.0 0.0
